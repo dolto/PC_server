@@ -66,97 +66,97 @@ app.get("/test", (req: Request, res: Response) => {
   //res.send(sendData);
 });
 
-app.get("/memberlist", (req: Request, res: Response) => {
-  let message:string = "";
-  let data:string = "";
-  let page:number = req.query.page != null ? Number.parseInt(req.query.page as string):0;
-  let go_back:string = req.query.go_back as string;
+// app.get("/memberlist", (req: Request, res: Response) => {
+//   let message:string = "";
+//   let data:string = "";
+//   let page:number = req.query.page != null ? Number.parseInt(req.query.page as string):0;
+//   let go_back:string = req.query.go_back as string;
 
-  if(go_back == "<"){
-    page = Math.max(0, page-1);
-  }
-  else if(go_back == ">"){
-    page += 1;
-  }
+//   if(go_back == "<"){
+//     page = Math.max(0, page-1);
+//   }
+//   else if(go_back == ">"){
+//     page += 1;
+//   }
 
-  let sqlQuery: string = `SELECT * FROM PC.member limit ${page*10},${10};`;
-  //console.log(db);
-  console.log(sqlQuery+"????");
-  db.query(sqlQuery, (err, result) => {
-    console.log(result);
-    //console.log(err);
-    let count = 0;
-    for(let _ in result){
-      let birthday = new Date(result[count]['memberBirthday']);
-      let birthday_string: string = "null";
-      if(result[count]['memberBirthday'] != null) 
-        birthday_string = birthday.getFullYear() + "년 " + birthday.getMonth() + "월 " + birthday.getDate() + "일";
-      data += `
-        <tr style="background-color: whitesmoke;">
-          <td>${result[count]['memberID']}</td>
-          <td>${result[count]['memberPhoneNumber']}</td>
-          <td>${result[count]['memberEmail']}</td>
-          <td>${birthday_string}</td>
-          <td>${result[count]['memberUesdTime']}</td>
-          <td>${result[count]['memberLeftTime']}</td>
-        </tr>`;
-      count += 1;
-    }
+//   let sqlQuery: string = `SELECT * FROM PC.member limit ${page*10},${10};`;
+//   //console.log(db);
+//   console.log(sqlQuery+"????");
+//   db.query(sqlQuery, (err, result) => {
+//     console.log(result);
+//     //console.log(err);
+//     let count = 0;
+//     for(let _ in result){
+//       let birthday = new Date(result[count]['memberBirthday']);
+//       let birthday_string: string = "null";
+//       if(result[count]['memberBirthday'] != null) 
+//         birthday_string = birthday.getFullYear() + "년 " + birthday.getMonth() + "월 " + birthday.getDate() + "일";
+//       data += `
+//         <tr style="background-color: whitesmoke;">
+//           <td>${result[count]['memberID']}</td>
+//           <td>${result[count]['memberPhoneNumber']}</td>
+//           <td>${result[count]['memberEmail']}</td>
+//           <td>${birthday_string}</td>
+//           <td>${result[count]['memberUesdTime']}</td>
+//           <td>${result[count]['memberLeftTime']}</td>
+//         </tr>`;
+//       count += 1;
+//     }
 
-    message = `<!DOCTYPE html>
-    <html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>pc방 관리창</title>
-    </head>
-    <body>
-      <div style="display: block; width: fit-content; height: 100%; border-style: solid; border-width: 2px; float: left">
-        <form action="memberlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="고객리스트"></form>
-        <form action="seatlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="좌석리스트"></form>
-        <form action="productlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="상품정보"></form>
-        <form action="product_order_complite_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="완료된주문"></form>
-        <form action="product_order_loding_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="진행중인주문"></form>
-        <form action="product_cancle_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="취소된주문"></form>
-        <form action="time_order_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="시간주문기록"></form>
-        <form action="seat_used_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="자리사용기록"></form>
-      </div>  
-       <form style="display: inline-block;" method="get">
-            <div style="border-style: solid;">
-                <h1>고객정보</h1>
-                페이지: <input type="text" name="page" value="${page}">
-                <table border="1">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    연락처
-                  </th>
-                  <th>
-                    이메일 
-                  </th>
-                  <th>
-                    생년월일
-                  </th>
-                  <th>
-                    사용시간
-                  </th>
-                  <th>
-                    잔여시간
-                  </th>
-                  ${data}
-              </table>
-                <br />
-                <input type="submit" name="go_back" value="<"> <input type="submit" name="go_back" value=">">
-            </div>
-       </form> 
-    </body>
-    </html>`
+//     message = `<!DOCTYPE html>
+//     <html lang="ko">
+//     <head>
+//         <meta charset="UTF-8">
+//         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//         <title>pc방 관리창</title>
+//     </head>
+//     <body>
+//       <div style="display: block; width: fit-content; height: 100%; border-style: solid; border-width: 2px; float: left">
+//         <form action="memberlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="고객리스트"></form>
+//         <form action="seatlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="좌석리스트"></form>
+//         <form action="productlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="상품정보"></form>
+//         <form action="product_order_complite_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="완료된주문"></form>
+//         <form action="product_order_loding_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="진행중인주문"></form>
+//         <form action="product_cancle_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="취소된주문"></form>
+//         <form action="time_order_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="시간주문기록"></form>
+//         <form action="seat_used_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="자리사용기록"></form>
+//       </div>  
+//        <form style="display: inline-block;" method="get">
+//             <div style="border-style: solid;">
+//                 <h1>고객정보</h1>
+//                 페이지: <input type="text" name="page" value="${page}">
+//                 <table border="1">
+//                   <th>
+//                     ID
+//                   </th>
+//                   <th>
+//                     연락처
+//                   </th>
+//                   <th>
+//                     이메일 
+//                   </th>
+//                   <th>
+//                     생년월일
+//                   </th>
+//                   <th>
+//                     사용시간
+//                   </th>
+//                   <th>
+//                     잔여시간
+//                   </th>
+//                   ${data}
+//               </table>
+//                 <br />
+//                 <input type="submit" name="go_back" value="<"> <input type="submit" name="go_back" value=">">
+//             </div>
+//        </form> 
+//     </body>
+//     </html>`
 
-    res.send(message);
-  });
-  //res.send(sendData);
-});
+//     res.send(message);
+//   });
+//   //res.send(sendData);
+// });
 
 app.get("/seatlist", (req: Request, res: Response) => {
   let message:string = "";

@@ -1,0 +1,61 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+--
+-- Host: localhost    Database: PC
+-- ------------------------------------------------------
+-- Server version	8.0.33-0ubuntu0.22.04.2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `POL`
+--
+
+DROP TABLE IF EXISTS `POL`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `POL` (
+  `POL_SeatID` int DEFAULT NULL,
+  `POL_Payment` varchar(6) DEFAULT NULL,
+  `POL_MemberID` varchar(20) DEFAULT NULL,
+  `POL_Inventory` int DEFAULT NULL,
+  `POL_ProductID` varchar(10) DEFAULT NULL,
+  `POL_Index` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`POL_Index`),
+  KEY `POL_SeatID` (`POL_SeatID`),
+  KEY `POL_MemberID` (`POL_MemberID`),
+  KEY `POL_ProductID` (`POL_ProductID`),
+  CONSTRAINT `POL_ibfk_1` FOREIGN KEY (`POL_SeatID`) REFERENCES `seat` (`seatID`),
+  CONSTRAINT `POL_ibfk_2` FOREIGN KEY (`POL_MemberID`) REFERENCES `member` (`memberID`),
+  CONSTRAINT `POL_ibfk_3` FOREIGN KEY (`POL_ProductID`) REFERENCES `product` (`productID`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `POL`
+--
+
+LOCK TABLES `POL` WRITE;
+/*!40000 ALTER TABLE `POL` DISABLE KEYS */;
+INSERT INTO `POL` VALUES (33,'카드','wzkj1953',2,'PRC0032',6),(11,'카드','exbb1954',1,'PRC0038',7),(9,'카드','xdev1961',3,'PRC0013',8),(31,'현금','joba1953',1,'PRC0023',9),(10,'카드','jkdc1953',3,'PRC0003',10),(37,'카드','wvus1958',1,'PRC0047',11),(42,'카드','dklz1955',2,'PRC0016',12),(44,'카드','ysus1954',3,'PRC0011',13),(45,'카드','xudn1960',2,'PRC0044',14),(3,'카드','qdpl1953',3,'PRC0002',15),(45,'카드','ecdr1952',2,'PRC0038',16),(32,'카드','exbb1954',1,'PRC0044',17),(27,'카드','jkdc1953',3,'PRC0033',18),(29,'카드','gwyl1960',3,'PRC0016',19),(10,'현금','xbjm1962',3,'PRC0031',20);
+/*!40000 ALTER TABLE `POL` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-10-28 22:48:43
