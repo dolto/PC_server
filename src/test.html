@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pc방 관리창</title>
+</head>
+<body style="display: inline-block;">
+    <div style="display: block; width: fit-content; height: 100%; border-style: solid; border-width: 2px; float: left">
+        <form action="memberlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="고객리스트"></form>
+        <form action="seatlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="좌석리스트"></form>
+        <form action="productlist" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="상품정보"></form>
+        <form action="product_order_complite_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="완료된주문"></form>
+        <form action="product_order_loding_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="진행중인주문"></form>
+        <form action="product_cancle_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="취소된주문"></form>
+        <form action="time_order_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="시간주문기록"></form>
+        <form action="seat_used_log_list" method="get"> <input style="width: 100%; padding:10px;" type="submit" value="자리사용기록"></form>
+   </div>
+   <form method="post">
+        <div style="border-style: solid; width: 650px; height: 525px;">
+            <input type="text" name="page" value="1">
+            <table border="1">
+                <th>
+
+                </th>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <p style="background-color: whitesmoke;"> <input type="checkbox" name="state" value="empty"></p>
+            <p style="background-color: orangered;"> <input type="checkbox" name="state" value="broked"></p>
+            <p style="background-color: aquamarine;"> <input type="checkbox" name="state" value="used"></p>
+            <input type="radio" name="state" id="">
+            <br />
+            <input type="submit" name="go_back" value="<"> <input type="submit" name="go_back" value=">"> <input type="submit" name="go_back" value="submit">
+        </div>
+   </form> 
+
+   
+</body>
+</html>
